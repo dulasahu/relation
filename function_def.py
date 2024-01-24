@@ -34,6 +34,6 @@ if __name__ == "__main__":
 	#A = []
 	#A = [ i for i in range(30000)]
 	#A[1] = 5
-	S = numeric_sort(A)
+	S = numeric_sort_fast(A)
 	print(S)
 
