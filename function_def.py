@@ -1,5 +1,6 @@
 import os
 import socket
+from itertools import permutations
 
 def numeric_sort_slow(list_A):
     ### incidenec matrix based implimentaion
@@ -183,6 +184,14 @@ def udpSocketin(localIp,localPort,message,agentIp,agentPort,messagetoagent):
         return 102
     server.close()
     return 0
+
+def permutation_of_string(n):
+    # fuction to generate a list of permutation of given string using permutations from itertools
+    my_list = []
+    perm_list = permutations(n)
+    for perm in list(perm_list):
+        my_list.append((''.join(perm)))
+    return my_list
 
 
 
