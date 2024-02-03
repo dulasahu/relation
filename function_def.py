@@ -28,6 +28,10 @@ def numeric_sort_fast(list_A):
 			list_S[x] = list_S[x-1]
 	return list_S
 
+def factorial(n):
+    # recursive fuction to calculate factorial of a given number
+	return 1 if (n==1 or n==0) else n * factorial(n - 1)
+
 
 if __name__ == "__main__":
 	A = [22, 40, 22, 22, 100, 0, 23,  99, 22, 1000, 1000,  700, 40, 2, 1, 11, 5, 9, 22]
