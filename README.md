@@ -1,2 +1,1 @@
-# relation
-relation
+#collection of few common fuctions
