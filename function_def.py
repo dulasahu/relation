@@ -193,6 +193,25 @@ def permutation_of_string(n):
         my_list.append((''.join(perm)))
     return my_list
 
+def delete_using_rsync(dir_path):
+    """
+    delete dir with very huge size by using rsync 
+    """
+    try:
+        cmd = "/tmp/emty_dir"""
+        data = os.mkdir(cmd)
+        cmd_2 = "rsync -a --delete " + cmd + " " + dir_path
+        data = os.system(cmd_2)
+        data = os.removedirs(dir_path)
+        print("execution status %s" % data)
+        if data == 0:
+            return 0
+        else:
+            return 1
+    except:
+        print("not able to delete the dir")
+        return 1
+
 
 
 
