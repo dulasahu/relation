@@ -105,6 +105,87 @@ def pingout(remoteIp):
         print("not able to execute ping command")
         return 1
 
+def pingin(localIp,agentIp,agentPort,messagetoagent):
+    """
+    Do a ping to local IP.
+    To verify successfull ping check for return code 0
+    To verify ping block check for return code 512
+    """
+    try:
+        msg = messagetoagent + "|" + "NA" + "|" + "NA"
+        data = tcpSocket(localIp,9997,agentIp,agentPort,messagetoagent)
+        print("execution status %s" % data)
+        if data == 0:
+            return 0
+        elif data == 512:
+            return 512
+    except:
+        print("not able to execute ping command")
+        return 1
+
+def tcpSocketin(localIp,localPort,message,agentIp,agentPort,messagetoagent):
+    """
+    create a listening tcp server to wait for incoming tcp packet 
+    and ask agent server to send a tcp message
+    """
+    server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    server.bind((localIp, localPort))
+    server.settimeout(20)
+
+    tcpSocket(localIp,9998,agentIp,agentPort,messagetoagent)
+    
+    try: 
+        server.listen(1)
+        conn, addr = server.accept()
+        while 1:
+            data = conn.recv(1024)
+            if not data: break
+            conn.sendall(data)
+            print("recieved incoming message %s" % data)
+            if data != message:
+                return 1
+        conn.close()
+    except socket.timeout:
+        print("Socket connection got timed out")
+        return 101
+    except socket.error as socker:
+        print("Socket error at server is %s" % socker)
+        return 102 
+    server.close()
+    return 0
+
+
+def udpSocketin(localIp,localPort,message,agentIp,agentPort,messagetoagent):
+    """
+    create a listening udp server to wait for incoming udp message
+    and ask agent server to send a udp message
+    """
+    server = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    server.bind((localIp, localPort))
+    server.settimeout(20)
+
+    tcpSocket(localIp,9999,agentIp,agentPort,messagetoagent)
+
+    try:
+        while 1:
+            data, addr = server.recvfrom(1024)
+            if not data: break
+            server.sendto(data, addr)
+            print("recieved incoming message %s" % data)
+            if data != message:
+                return 1
+            if data == message: break
+    except socket.timeout:
+        print("Socket connection got timed out")
+        return 101
+    except socket.error as socker:
+        print("Socket error at server is %s" % socker)
+        return 102
+    server.close()
+    return 0
+
+
+
 
 
 if __name__ == "__main__":
