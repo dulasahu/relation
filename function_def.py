@@ -193,6 +193,25 @@ def permutation_of_string(n):
         my_list.append((''.join(perm)))
     return my_list
 
+def list_cat(y):
+    s1 = ""
+    for x in y:
+        s1 += x
+    return s1
+
+
+def custom_revo(a1):
+    a = str(a1)
+    c = [x for x in a ]
+    b = len(a)
+
+    for x in range(b//2):
+        a1 = c[x]
+        b1 = c[-(x+1)]
+        c[x] = b1
+        c[-(x+1)] = a1
+    return c
+
 def delete_using_rsync(dir_path):
     """
     delete dir with very huge size by using rsync 
