@@ -1,0 +1,10 @@
+#for permutaion of below string
+st1 = 'abcde'
+my_list = [x for x in st1]
+my_work_1 = [ [x,y] for x in my_list for y in my_list if x != y]
+my_work_2 = [ [x[0],x[1],y[0],y[1]] for x in my_work_1 for y in my_work_1 if x[0] not in y and x[1] not in y ]
+my_work_4 = [ [x[0],x[1],x[2],x[3],y]  for y in my_list for x in my_work_2 if y not in x ]
+my_work_3 = ["".join(x) for x in my_work_4 ]
+
+print(len(my_work_3))
+print(my_work_3)
