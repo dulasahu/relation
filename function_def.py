@@ -2,6 +2,16 @@ import os
 import socket
 from itertools import permutations
 
+def numeric_sort_easy(input_list):
+    sorted_list = [0 for x in range(len(input_list))]
+    for x in input_list:
+        count = 0
+        for y in input_list:
+            if x>y:
+                count += 1
+        sorted_list[count] = x
+    return sorted_list
+	
 def numeric_sort_slow(list_A):
     ### incidenec matrix based implimentaion
 	list_B = [ [0]*len(list_A) for _ in list_A ]  # create a matrix with zero element
