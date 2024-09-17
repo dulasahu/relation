@@ -252,6 +252,9 @@ def delete_using_rsync(dir_path):
         print("not able to delete the dir")
         return 1
 
+def triangle_area_based_on_coardinates(x, y):
+    area1 = (x[0]*(y[1]-y[2])+x[1]*(y[2]-y[0])+x[2]*(y[0]-y[1]))/2
+    return area1
 
 
 
