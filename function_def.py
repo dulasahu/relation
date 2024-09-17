@@ -11,6 +11,17 @@ def numeric_sort_easy(input_list):
                 count += 1
         sorted_list[count] = x
     return sorted_list
+
+def numeric_sort_single_list(int_list):
+	# slower
+    list_len = len(int_list)
+    for i in [x for x in range(1,list_len, 1)]*list_len:
+        current = int_list[i]
+        previous = int_list[i-1]
+        if current < previous:
+            int_list[i] = previous
+            int_list[i-1] = current
+    return int_list	
 	
 def numeric_sort_slow(list_A):
     ### incidenec matrix based implimentaion
