@@ -11,7 +11,18 @@ def numeric_sort_easy(input_list):
                 count += 1
         sorted_list[count] = x
     return sorted_list
-
+	
+def sort_min_to_max(int_list):
+    max = int_list[0]
+    min = int_list[0]
+    for x in int_list:
+        if x < min:
+            min = x
+        elif x > max:
+            max = x
+    sorted_list = [y for x in [[i]*int_list.count(i) for i in range(min, max+1, 1) if i in int_list] for y in x]
+    return sorted_list
+	
 def numeric_sort_single_list(int_list):
 	# slower
     list_len = len(int_list)
