@@ -13,6 +13,7 @@ def numeric_sort_easy(input_list):
     return sorted_list
 	
 def sort_min_to_max(int_list):
+    # faster
     max = int_list[0]
     min = int_list[0]
     for x in int_list:
