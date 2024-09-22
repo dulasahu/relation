@@ -2,6 +2,30 @@ import os
 import socket
 from itertools import permutations
 
+def lexical_character_sort(string_list):
+    """
+    sorting using cartesian product, cartesian product is inherently sorted
+    """
+    max_string_length = len(string_list[0])
+    for x in string_list:
+        if len(x) > max_string_length:
+            max_string_length = len(x)
+    alphabet = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"]
+    cartesian_products = {0:alphabet}
+    for x in range(1,max_string_length,1):
+        if x == 1:
+            cartesian_products[x] = [[x,y] for x in alphabet for y in alphabet ]
+        else:
+            cartesian_products[x] = [[i for i in x] + [y] for x in cartesian_products[x-1] for y in alphabet ]
+    sorted_list = []
+    for x in cartesian_products[max_string_length-1]:
+        for y in string_list:
+            my_len = len(y)
+            if "".join(x)[0:my_len] == y and y not in sorted_list:
+                sorted_list.append(y)
+    return sorted_list
+
+
 def numeric_sort_easy(input_list):
     sorted_list = [0 for x in range(len(input_list))]
     for x in input_list:
