@@ -2,6 +2,16 @@ import os
 import socket
 from itertools import permutations
 
+def matrix_transpose(mat):
+    """
+    returns transpose of a matrix
+    """
+    transpose_mat = [ [0]*len(mat) for x in mat[0]]
+    for i,x in enumerate(transpose_mat):
+        for j,y in enumerate(x):
+            transpose_mat[i][j] = mat[j][i]
+    return transpose_mat
+
 def lexical_character_sort(string_list):
     """
     sorting using cartesian product, cartesian product is inherently sorted
