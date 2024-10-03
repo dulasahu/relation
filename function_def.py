@@ -2,6 +2,29 @@ import os
 import socket
 from itertools import permutations
 
+def max_bin_search(l1):
+    """
+    Recursive function to find the largest number from a list,
+    """
+    if len(l1)%2 == 0:
+        l1.append(l1[-1])
+    for x in range(len(l1)//2):
+        if l1[2*x+1] > l1[2*x+2]:
+            l = l1[2*x+1]
+            r = l1[2*x+2]
+            l1[2*x+1] = r
+            l1[2*x+2] = l
+
+    root_right = [x for i,x in enumerate(l1) if i%2 == 0 ]
+
+    if len(root_right) == 3:
+        max = root_right[0]
+        for x in root_right:
+            if x > max:
+                max = x
+        return max
+    return max_bin_search(root_right)
+	
 def matrix_transpose(mat):
     """
     returns transpose of a matrix
