@@ -4,7 +4,7 @@ from itertools import permutations
 
 def max_bin_search(l1):
     """
-    Recursive function to find the largest number from a list,
+    Recursive function to find the largest number from a list, tree , left and right comparison 
     """
     if len(l1)%2 == 0:
         l1.append(l1[-1])
