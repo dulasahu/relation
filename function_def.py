@@ -4,7 +4,7 @@ from itertools import permutations
 
 def max_bin_search(l1):
     """
-    Recursive function to find the largest number from a list, tree , left and right comparison 
+    Recursive function to find the largest number from a list, used tree , left and right comparison 
     """
     if len(l1)%2 == 0:
         l1.append(l1[-1])
@@ -24,6 +24,30 @@ def max_bin_search(l1):
                 max = x
         return max
     return max_bin_search(root_right)
+
+def min_bin_search(l1):
+    """
+    Recursive function to find the smallest number from a list, used tree , left and right comparison 
+    """
+    if len(l1)%2 == 0:
+        l1.append(l1[-1])
+    for x in range(len(l1)//2):
+        if l1[2*x+1] > l1[2*x+2]:
+            l = l1[2*x+1]
+            r = l1[2*x+2]
+            l1[2*x+1] = r
+            l1[2*x+2] = l
+
+    root_left = [x for i,x in enumerate(l1) if i%2 != 0 ]
+    root_left.insert(0,l1[0])
+
+    if len(root_left) == 3:
+        min = root_left[0]
+        for x in root_left:
+            if x < min:
+                min = x
+        return min
+    return min_bin_search(root_left)
 	
 def matrix_transpose(mat):
     """
