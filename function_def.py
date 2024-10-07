@@ -104,6 +104,21 @@ def sort_min_to_max(int_list):
             max = x
     sorted_list = [y for x in [[i]*int_list.count(i) for i in range(min, max+1, 1) if i in int_list] for y in x]
     return sorted_list
+
+def recursive_sort(l1):
+    """
+    length of input list l1 shoud not exceed maximum recursion depth -996
+    """
+    small = l1[0]
+    if len(l1) == 1:
+        return [small]
+    index = l1.index(small)
+    for x in l1:
+        if x < small:
+            small = x
+            index = l1.index(x)
+    del l1[index]
+    return [small] + recursive_sort(l1
 	
 def numeric_sort_single_list(int_list):
 	# slower
