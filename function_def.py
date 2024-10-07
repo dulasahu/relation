@@ -1,6 +1,7 @@
 import os
 import socket
 from itertools import permutations
+import sys
 
 def max_bin_search(l1):
     """
@@ -119,6 +120,37 @@ def recursive_sort(l1):
             index = l1.index(x)
     del l1[index]
     return [small] + recursive_sort(l1
+
+def tree_sort(l1):
+    """
+    recursive tree based sort, used sys.setrecusionlimit to override the default limit set by python which in 1000
+    """
+    sys.setrecursionlimit(10000)
+    small = l1[0]
+    if len(l1) == 1:
+        return [small]
+    if len(l1) <=3:
+        index = l1.index(small)
+        for x in l1:
+            if x < small:
+                small = x
+                index = l1.index(x)
+        del l1[index]
+        return [small] + tree_sort(l1)
+    left = []
+    right = []
+    for i,x in enumerate(l1):
+        if x < small and i != 0:
+            left.append(x)
+        elif x > small and i != 0:
+            right.append(x)
+    if len(left) >=1 and len(right) >= 1:
+        return tree_sort(left) + [small] + tree_sort(right)
+    elif len(left) >=1:
+        return tree_sort(left) + [small]
+    elif len(right) >=1:
+        return [small] + tree_sort(right)
+
 	
 def numeric_sort_single_list(int_list):
 	# slower
