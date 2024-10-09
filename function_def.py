@@ -59,6 +59,28 @@ def matrix_transpose(mat):
         for j,y in enumerate(x):
             transpose_mat[i][j] = mat[j][i]
     return transpose_mat
+def matrix_multiplication(mat_1,mat_2):
+    """
+    Tested with smaller dimesion matrix, need to test higher dimesion matrix
+    make sure  both matrix are of same dimension
+    or mat_2 coloumn length is smae as mat_1 row legth
+    ex-
+    m1 = [[1, 2], [1, 2]]
+    m2 = [[2],[2]]
+    m1*m1
+    m1*m2
+    m3 = [[1, 2,3], [1, 2,3]]
+    m4 = [[1],[2],[3]]
+    m3*m4
+    """
+    mat_product = [[0]*len(mat_2[0]) for x in mat_1]
+
+    for i,x in enumerate(mat_1):
+        for j,y in enumerate(x):
+            for z in range(len(mat_2[0])):
+                mat_product[i][z] += mat_1[z][j] * mat_2[j][z]
+    return mat_product
+
 
 def lexical_character_sort(string_list):
     """
