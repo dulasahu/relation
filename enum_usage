@@ -1,0 +1,57 @@
+from enum import IntEnum
+
+class Spice(IntEnum):
+        """
+        we can also use Enum, flag, strenum, auto
+        Flag supports bitwise operation (AND), | (OR), ^ (XOR), and ~
+        ex- from enum import Enum
+        """
+        turmeric_powder = 1
+        ginger = 2
+        cumin = 3
+        red_mustard = 4  # a type of mustard red or black
+        methi = 5
+        fennel = 6  # pan mahuri
+        yellow_mustard = 7  # a type of mustard
+        elaichi = 8
+        dry_mango = 9
+        tamarind = 10
+        bamboo_shoot = 11
+        Red_chilli_powder = 12
+        red_chilli = 13
+        ajwain = 14
+        tej_patta = 15  # bae leaf,
+        corriander_seed = 16
+        coriander_seed_powder = 17
+        dry_methi_leaf = 18
+        clove = 19
+        black_papper = 20
+        postak = 21  # poppy seed
+        sesam_seed = 22
+        peanut = 23
+        coconut = 24
+        curry_leaf = 25
+        black_elaichi = 26  # badi elaichi
+        star_anies = 27
+        hing = 28
+        dal_chini = 29
+        mace = 30  # jaitri
+        cashew_nut = 31
+        kismis = 32
+        magaj_seed = 33
+        kala_jeera = 34
+        garlic = 35
+        onion = 36
+        black_salt = 37
+        lemon = 38
+        curd = 39
+        butter = 40
+        khajur = 41
+        khoa = 42
+        milk = 43
+        jagery = 44
+        kasmiri_chili_powder = 45
+        green_chili = 46
+        green_criander = 47
+        kesar = 48
+        corn_floor = 49
