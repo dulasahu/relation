@@ -453,6 +453,29 @@ def triangle_area(x, y):
     area1 = (base * height)/2
     return area1
 
+def gcd_of_two_number(x,y):
+    """
+    GCD calculation without using Euler algorithm 
+    """
+    x_list = [i for i in range(1,x+1,1) if x%i == 0]
+    y_list = [i for i in range(1,y+1,1) if y%i == 0]
+    x_and_y = set(x_list) & set(y_list)
+    return list(x_and_y)[-1]
+	
+def gcd_of_two_number_euler_method(x,y):
+      """
+    GCD or HCF calculation  using Euler algorithm 
+    """
+    if x == 0:
+        return y
+    elif y == 0:
+        return x
+    elif x == y:
+        return x
+    elif x > y:
+        return gcd_of_two_number_euler_method(x-y,y)
+    return gcd_of_two_number_euler_method(x, y-x)
+
 
 
 
