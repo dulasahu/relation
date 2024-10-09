@@ -434,6 +434,25 @@ def triangle_area_based_on_coardinates(x, y):
     area1 = (x[0]*(y[1]-y[2])+x[1]*(y[2]-y[0])+x[2]*(y[0]-y[1]))/2
     return area1
 
+def triangle_area(x, y):
+    """
+    triangle are without using formula, when both x, y cordinates are provided
+    """
+    for in1, xi in enumerate(x):
+       for in2, yi in enumerate(y):
+           if xi > 0 and yi > 0 and xi < yi and in1 == in2:
+               base = xi
+           elif xi > 0 and yi > 0 and yi < xi and in1 == in2:
+               base = yi
+           elif xi > 0 and yi > 0 and yi == xi and in1 == in2:
+               base = xi
+           elif xi == 0 and yi != 0 and in1 == in2:
+               height = yi
+           elif x != 0 and yi == 0 and in1 == in2:
+               height = xi
+    area1 = (base * height)/2
+    return area1
+
 
 
 
