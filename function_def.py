@@ -3,6 +3,22 @@ import socket
 from itertools import permutations
 import sys
 
+
+def num_square(func):
+    """
+    Decorator example
+    """
+    def wrapper():
+        a = func()
+        b = [x**2 for x in a]
+        return b
+    return wrapper
+
+@num_square
+def num_list():
+    a = [1,2,3,4,5]
+    return a
+	
 def max_bin_search(l1):
     """
     Recursive function to find the largest number from a list, used tree , left and right comparison 
