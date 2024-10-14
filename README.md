@@ -1,1 +1,1 @@
-#collection of few common fuctions
+#collection of few common functions
