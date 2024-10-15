@@ -2,10 +2,11 @@ import os
 import socket
 from itertools import permutations
 import sys
+import numpy
 
 def index_no(my_string):
     """
-    calculate index number of astring
+    calculate index number of a string
     """
     
     alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u",
@@ -17,6 +18,25 @@ def index_no(my_string):
             if x==y:
                 mysum += (j+1)*(i+1)
     return mysum
+
+def index_no_two(my_string):
+    """
+    calculate index number of a string using matrix multiplication
+    """	
+    alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u",
+                "v", "w", "x", "y", "z"]
+    alphabet_no = [[x+1] for x in range(len(alphabet))]
+    my_string_list = [x for x in my_string]
+    incidence = [[0]*26 for x in my_string_list]
+    for i,x in enumerate(my_string_list):
+        for j,y in enumerate(alphabet):
+            if x==y:
+                incidence[i][j] = i+1
+    inci = numpy.mat(incidence)
+    alph = numpy.mat(alphabet_no)
+    product = inci*alph
+    p1 = numpy.sum(product)
+    return p1	
 
 def num_square(func):
     """
