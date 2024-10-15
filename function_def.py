@@ -3,6 +3,20 @@ import socket
 from itertools import permutations
 import sys
 
+def index_no(my_string):
+    """
+    calculate index number of astring
+    """
+    
+    alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u",
+                "v", "w", "x", "y", "z"]
+    my_string_list = [x for x in my_string]
+    mysum = 0
+    for i,x in enumerate(my_string_list):
+        for j,y in enumerate(alphabet):
+            if x==y:
+                mysum += (j+1)*(i+1)
+    return mysum
 
 def num_square(func):
     """
