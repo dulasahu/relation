@@ -36,7 +36,38 @@ def index_no_two(my_string):
     alph = numpy.mat(alphabet_no)
     product = inci*alph
     p1 = numpy.sum(product)
-    return p1	
+    return p1
+def generate_subset_list(input_list):
+    """this function can generate s subset list from  ainput list by using binary counting
+     bin function is used to convert to finary format , slicing used to remove 0b then rjust used for padding """
+    test_len = len(input_list)
+    count = 2**test_len
+    subset_list = []
+    for x in range(0,count,1):
+        bin_value = bin(x)[2:].rjust(test_len, '0')
+        subset = [ test[i] for i, x in enumerate(bin_value) if x == "1"]
+        subset_list.append(subset)
+        #yield subset
+    return subset_list
+
+def cart_product(list1,list2):
+    perm = []
+    for x in list1:
+        for y in list2:
+            if y not in x:
+                my_list = [x for x in x]
+                my_list.append(y)
+                perm.append(my_list)
+    if (len(perm[0])==len(list2)):
+        return perm
+    else:
+        return cart_product(perm,list2) 
+
+def perm(my_list):
+    product = cart_product(my_list,my_list)
+    return product
+
+
 
 def num_square(func):
     """
