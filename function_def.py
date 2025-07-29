@@ -45,7 +45,7 @@ def generate_subset_list(input_list):
     subset_list = []
     for x in range(0,count,1):
         bin_value = bin(x)[2:].rjust(test_len, '0')
-        subset = [ test[i] for i, x in enumerate(bin_value) if x == "1"]
+        subset = [ input_list[i] for i, x in enumerate(bin_value) if x == "1"]
         subset_list.append(subset)
         #yield subset
     return subset_list
