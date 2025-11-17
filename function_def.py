@@ -4,6 +4,18 @@ from itertools import permutations
 import sys
 import numpy
 
+def matrix_invariant(my_mat):
+	"""
+	reurns list of a square matrix basic invariants
+	"""
+    eigen_values = np.linalg.eig(my_mat)
+    positive_eigen_values = len([x for x in eigen_values[0] if x > 0])
+    negative_eigen_values = len([x for x in eigen_values[0] if x < 0])
+    rank = int(np.linalg.matrix_rank(my_mat))
+    index = positive_eigen_values
+    signature=abs(positive_eigen_values-negative_eigen_values)
+    return(rank,index,signature)
+
 def index_no(my_string):
     """
     calculate index number of a string
