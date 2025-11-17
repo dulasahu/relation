@@ -9,6 +9,7 @@ def split_square_matrix(my_mat,size):
     splits a squre matrix with the size specified, 
     returns a  list containing submatrix of size * size shape
     input matrix row or column legth should be divisible by size
+	ex- split_square_matrix(mat1,3)
     """
     row_len , column_len = my_mat.shape
     row_sub_len = row_len//size
