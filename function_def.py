@@ -50,7 +50,7 @@ def index_no_two(my_string):
     p1 = numpy.sum(product)
     return p1
 def generate_subset_list(input_list):
-    """this function can generate s subset list from  ainput list by using binary counting
+    """this function can generate s subset list from  a input list by using binary counting
      bin function is used to convert to finary format , slicing used to remove 0b then rjust used for padding """
     test_len = len(input_list)
     count = 2**test_len
