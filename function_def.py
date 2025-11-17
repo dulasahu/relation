@@ -16,6 +16,13 @@ def matrix_invariant(my_mat):
     signature=abs(positive_eigen_values-negative_eigen_values)
     return(rank,index,signature)
 
+def matrix_invarint_of_submatrix_list(my_list):
+    """
+    retruns a list of invarint of submatrix
+    """
+    invariant_list = [[matrix_invariant(y) for y in x] for x in my_list]
+    return invariant_list
+
 def index_no(my_string):
     """
     calculate index number of a string
