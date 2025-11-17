@@ -4,6 +4,19 @@ from itertools import permutations
 import sys
 import numpy
 
+def split_square_matrix(my_mat,size):
+    """
+    splits a squre matrix with the size specified, 
+    returns a  list containing submatrix of size * size shape
+    input matrix row or column legth should be divisible by size
+    """
+    row_len , column_len = my_mat.shape
+    row_sub_len = row_len//size
+    column_sub_len = column_len//size
+    mat2 = numpy.vsplit(my_mat, row_sub_len)
+    mat3_list = [numpy.hsplit(x, column_sub_len) for x in mat2]
+    return mat3_list
+	
 def matrix_invariant(my_mat):
 	"""
 	returns list of a square matrix basic invariants
