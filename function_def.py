@@ -37,6 +37,11 @@ def matrix_invarint_of_submatrix_list(my_list):
     invariant_list = [[matrix_invariant(y) for y in x] for x in my_list]
     return invariant_list
 
+def matrix_trace(my_matrix):
+    eigen_values = numpy.linalg.eigvals(my_matrix)
+    trace = sum(eigen_values)
+    return trace
+
 def index_no(my_string):
     """
     calculate index number of a string
