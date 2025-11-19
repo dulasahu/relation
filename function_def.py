@@ -42,6 +42,16 @@ def matrix_trace(my_matrix):
     trace = sum(eigen_values)
     return trace
 
+def matrix_power(my_matrix,power):
+    new_matrix = my_matrix
+    for x in range(1,power,1):
+        new_matrix = numpy.dot(new_matrix, my_matrix)
+    return new_matrix
+	
+def matrix_power_two(my_matrix,power):
+    new_matrix = numpy.linalg.matrix_power(my_matrix,power)
+    return new_matrix
+
 def index_no(my_string):
     """
     calculate index number of a string
