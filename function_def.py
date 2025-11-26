@@ -70,6 +70,30 @@ def matrix_power_two(my_matrix,power):
     new_matrix = numpy.linalg.matrix_power(my_matrix,power)
     return new_matrix
 
+def matrix_padded(my_matrix):
+    """
+    retrurns a padded square matrix which is divisible by a 3 cross 3 matrix
+    """
+    divisor = 3
+    row, coloumn = my_matrix.shape
+    reshape_size = 0
+    if row >= coloumn:
+        reshape_size = row
+    else:
+        reshape_size = coloumn
+    remainder = reshape_size % divisor
+    if remainder == 0:
+        pass
+    else:
+        increament = divisor - remainder
+        reshape_size += increament 
+    
+    pad_rows = reshape_size - row
+    pad_coloumns = reshape_size - coloumn
+
+    output_matrix = numpy.pad(my_matrix, ((0, pad_rows), (0, pad_coloumns)), 'constant', constant_values=0)
+    return output_matrix
+
 def index_no(my_string):
     """
     calculate index number of a string
