@@ -4,7 +4,7 @@ from itertools import permutations
 import sys
 import numpy
 
-def split_square_matrix(my_mat,size):
+def split_square_matrix(my_mat,size=3):
     """
     splits a squre matrix with the size specified, 
     returns a  list containing submatrix of size * size shape
@@ -36,6 +36,24 @@ def matrix_invarint_of_submatrix_list(my_list):
     """
     invariant_list = [[matrix_invariant(y) for y in x] for x in my_list]
     return invariant_list
+	
+def matrix_sub_matrix_select_only_with_rank_n_gauss(my_list):
+    """
+    returns a matrix with submatrix replaced with sum/9 if rank is n for n cross n submatrix
+    """
+    my_n = 3
+    list = [[numpy.sum(y)/9 if numpy.linalg.matrix_rank(y) == my_n else 0 for y in x ] for x in my_list]
+    out_matrix = numpy.asmatrix(list)
+    return out_matrix
+def matrix_sub_matrix_select_only_rank_n_one(my_list):
+    """
+    returns a matrix with submatrix replaced with 1 if rank is 1 for n cross n submatrix
+    """
+    my_n = 1
+    list = [[1 if numpy.linalg.matrix_rank(y) == my_n else 0 for y in x ] for x in my_list]
+    out_matrix = numpy.asmatrix(list)
+    return out_matrix
+
 
 def matrix_trace(my_matrix):
     eigen_values = numpy.linalg.eigvals(my_matrix)
