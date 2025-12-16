@@ -37,19 +37,35 @@ def matrix_invarint_of_submatrix_list(my_list):
     invariant_list = [[matrix_invariant(y) for y in x] for x in my_list]
     return invariant_list
 	
-def matrix_sub_matrix_select_only_with_rank_n_gauss(my_list):
+def matrix_sub_matrix_select_only_with_rank_n_gauss(my_list,my_n=3):
     """
     returns a matrix with submatrix replaced with sum/9 if rank is n for n cross n submatrix
     """
-    my_n = 3
     list = [[numpy.sum(y)/9 if numpy.linalg.matrix_rank(y) == my_n else 0 for y in x ] for x in my_list]
     out_matrix = numpy.asmatrix(list)
     return out_matrix
-def matrix_sub_matrix_select_only_rank_n_one(my_list):
+
+def matrix_sub_matrix_select_only_with_invarint(my_list,invarint=(2,1,0)):
+    """
+    returns a matrix with submatrix replaced with sum/9 if invarint of submatrix matches
+    """
+    my_n = 3
+    list = [[numpy.sum(y)/9 if matrix_invariant(y) == invarint else 0 for y in x ] for x in my_list]
+    out_matrix = numpy.asmatrix(list)
+    return out_matrix
+def matrix_sub_matrix_select_only_with_invarint_one(my_list,invarint=(2,1,0)):
+    """
+    returns a matrix with submatrix replaced with sum/9 if invarint of submatrix matches
+    """
+    my_n = 3
+    list = [[numpy.sum(y)/9 if matrix_invariant(y) == invarint else 0 for y in x ] for x in my_list]
+    out_matrix = numpy.asmatrix(list)
+    return out_matrix
+	
+def matrix_sub_matrix_select_only_rank_n_one(my_list,my_n=1):
     """
     returns a matrix with submatrix replaced with 1 if rank is 1 for n cross n submatrix
     """
-    my_n = 1
     list = [[1 if numpy.linalg.matrix_rank(y) == my_n else 0 for y in x ] for x in my_list]
     out_matrix = numpy.asmatrix(list)
     return out_matrix
@@ -93,6 +109,58 @@ def matrix_padded(my_matrix):
 
     output_matrix = numpy.pad(my_matrix, ((0, pad_rows), (0, pad_coloumns)), 'constant', constant_values=0)
     return output_matrix
+def matrix_no_of_triangle(My_matrix):
+    """
+    calculates number of tringle in a swuqre matrix 
+    """
+    my_matrix_qube = matrix_power_two(My_matrix,3)
+    trace = matrix_trace(my_matrix_qube)
+    matrix_no_of_triangle = trace/6
+    return matrix_no_of_triangle
+
+def matrix_transofom(my_matrix):
+
+    """
+    does a  recursive row  substraction transform the matrix 
+
+    """
+    len_x, len_y = my_matrix.shape
+    mat_new = numpy.zeros((len_x,len_y))
+    for i, x in enumerate(my_matrix):
+        if i != len_x-1:
+            mat_new[i] = my_matrix[i]-my_matrix[i+1]
+        else:
+            mat_new[i] = my_matrix[i]
+
+    my_matrix_1 = numpy.linalg.matrix_transpose(mat_new)
+    mat_new_1 = numpy.zeros((len_x,len_y))
+    for i, x in enumerate(my_matrix_1):
+        if i != len_x-1:
+            mat_new_1[i] = my_matrix_1[i]-my_matrix_1[i+1]
+        else:
+            mat_new_1[i] = my_matrix_1[i]
+    my_mat_1 = numpy.linalg.matrix_transpose(mat_new_1)
+    return(my_mat_1) 
+
+def matrix_change_to_inflated_index(my_matrix):
+    """
+    change the value to one out of 1 to n*n
+    """  
+    mat_x , mat_y = my_matrix.shape
+    
+    my_mat_d = []
+    for x in range(1,((mat_x-1)*mat_y)+2,mat_y):
+        my_x = x
+        my_local = [x for x in range(my_x,my_x+mat_y,1)]
+        my_mat_d.append(my_local)
+
+    my_mat_d2 = numpy.zeros((mat_x,mat_y))
+    for x in range(0,mat_x,1):
+        for y in range(0,mat_y,1):
+            if my_matrix[x][y] > 0:
+                my_mat_d2[x][y] = my_mat_d[x][y] 
+    return my_mat_d2
+
 
 def index_no(my_string):
     """
