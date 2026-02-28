@@ -195,6 +195,38 @@ def index_no_two(my_string):
     product = inci*alph
     p1 = numpy.sum(product)
     return p1
+	
+def calculate_entropy_of_a_file(file):
+    """
+    Calculating Entropy of a file using own implementation
+    """
+    count = {}
+    with open(file, 'rb') as FILE:
+        content = FILE.read()
+        for x in content:
+            if x in count:
+                count[x] += 1
+            else:
+                count[x] = 1
+    total = sum(x for x in count.values())
+    count_probabilty = [x/total for x in count.values()] 
+    count_log = [x*math.log2(x) for x in count_probabilty]
+    return  (abs(sum(count_log)))
+	
+def generate_subset_list_k_subset(input_list,k_count=0):
+    """this function can generate s subset list from  ainput list by using binary counting
+     bin function is used to convert to finary format , slicing used to remove 0b then rjust used for padding """
+    test_len = len(input_list)
+    count = 2**test_len
+    subset_list = []
+    for x in range(0,count,1):
+        bin_value = bin(x)[2:].rjust(test_len, '0')
+        subset = [ input_list[i] for i, x in enumerate(bin_value) if x == "1"]
+        if k_count == 0:
+            subset_list.append(subset)
+        elif k_count != 0 and len(subset) == k_count:
+            subset_list.append(subset)
+    return subset_list
 def generate_subset_list(input_list):
     """this function can generate s subset list from  a input list by using binary counting
      bin function is used to convert to finary format , slicing used to remove 0b then rjust used for padding """
